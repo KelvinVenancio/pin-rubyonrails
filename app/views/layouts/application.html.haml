@@ -6,7 +6,22 @@
 	= javascript_include_tag 'application', 'data-turbolinks-track' => true
 	= csrf_meta_tags
 %body
-	- flash.each do |name, msg|
-		= content_tag :div, msg, class: "alert alert-info"
+	%nav.navbar.navbar-default
+		.container
+			.navbar-brand= link_to "Pin Board", root_path
 
-	= yield
+			- if user_signed_in?
+				%ul.nav.navbar-nav.navbar-right
+					%li= link_to "Novo Pin", new_pin_path
+					%li= link_to "Minha Conta", edit_user_registration_path
+					%li= link_to "Sair", destroy_user_session_path, method: :delete
+			- else
+				%ul.nav.navbar-nav.navbar-right
+					%li= link_to "Criar Conta", new_user_registration_path
+					%li= link_to "Entrar", new_user_session_path
+
+	.container
+		- flash.each do |name, msg|
+			= content_tag :div, msg, class: "alert alert-info"
+
+		= yield
