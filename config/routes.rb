@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :pins
+	devise_for :users
+	resources :pins do
+		member do
+			put "like", to: "pins#upvote"
+		end
+	end
 
-  root "pins#index"
+	root "pins#index"
 end
+
+#01h:01:36
