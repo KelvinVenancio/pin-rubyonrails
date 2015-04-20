@@ -1,6 +1,11 @@
 .col-md-6.col-md-offset-3
-	%h1 Editar Pin
-
-	= image_tag @pin.image.url(:medium)
-	= render 'form'
-	= link_to "Cancelar", root_path
+	.row
+		.panel.panel-default
+			.panel-heading
+				%h1 Editar Pin
+			.panel-body
+				%strong.center Imagem Atual
+				%br/
+				= image_tag @pin.image.url(:medium)
+				%br/
+				= render 'form'
